@@ -10,7 +10,7 @@
       $('.monster-select-modal').hide();
       currentMonster.find('.monster-select-modal').toggle();
     } else {
-      drawCard(currentMonster);
+      showStats(drawCard(currentMonster), currentMonster);
     }
   })
 
@@ -30,6 +30,8 @@
     $(targetMonster).attr('data-monster', '');
     $(targetMonster).find('h2').text('Click to Select Monster');
     $(targetMonster).find('.clear-monster').hide();
+    $(targetMonster).find('.card-stats').children().removeClass('primary secondary');
+    $(targetMonster).find('.card-stats').hide();
   }
 
   // This function should apply the chosen monster to the correct deck.
@@ -62,7 +64,7 @@
     if (randomCard[0]) {
       currentDeck.remainingValues = [0, 1, 2, 3, 4, 5, 6, 7]
     }
-    
+
     return randomCard;
   }
 
@@ -87,5 +89,66 @@
     data.forEach(function (each) {
       var li = $('<li/>').attr('data-value', each.class).text(each.name).appendTo(ul);
     })
+  }
+
+  // This function will display the given stats on the appropriate cards
+  function showStats(card, monster) {
+    $(monster).find('.card-stats').show().children().text('').removeClass('primary secondary');
+    var parsedCard = parseCard(card);
+    $(monster).find('.initiative').text(parsedCard.initiative);
+    try {
+      $(monster).find('.stat-1').text(parsedCard.line1.content.join(' ')).addClass(parsedCard.line1.primaryOrSecondary);
+      $(monster).find('.stat-2').text(parsedCard.line2.content.join(' ')).addClass(parsedCard.line1.primaryOrSecondary);
+      $(monster).find('.stat-3').text(parsedCard.line3.content.join(' ')).addClass(parsedCard.line1.primaryOrSecondary);
+      $(monster).find('.stat-4').text(parsedCard.line4.content.join(' ')).addClass(parsedCard.line1.primaryOrSecondary);
+    } catch (e) {
+      // I should probably do something here but, to be honest, it's only failing
+      // because the line it is trying to join doesn't exist. It's not a big deal.
+    }
+  }
+
+  // This function should determine if something is a primary action or a secondary action
+  function parseCard(card) {
+    var parsedCard = {
+      refresh: card[0],
+      initiative: card[1],
+    }
+
+    if (card[2]) {
+      parsedCard.line1 = {
+        primaryOrSecondary: primaryOrSecondary(card[2].split(' ')[0]),
+        content: card[2].split(' ').splice(1)
+      }
+    }
+    if (card[3]) {
+      parsedCard.line2 = {
+        primaryOrSecondary: primaryOrSecondary(card[3].split(' ')[0]),
+        content: card[3].split(' ').splice(1)
+      }
+    }
+    if (card[4]) {
+      parsedCard.line3 = {
+        primaryOrSecondary: primaryOrSecondary(card[4].split(' ')[0]),
+        content: card[4].split(' ').splice(1)
+      }
+    }
+    if (card[5]) {
+      parsedCard.line4 = {
+        primaryOrSecondary: primaryOrSecondary(card[5].split(' ')[0]),
+        content: card[5].split(' ').splice(1)
+      }
+    }
+
+    return parsedCard;
+  }
+
+  function primaryOrSecondary(string) {
+    if (string === '*') {
+      return 'primary';
+    } else if (string === '**') {
+      return 'secondary';
+    } else {
+      return false;
+    }
   }
 })();
