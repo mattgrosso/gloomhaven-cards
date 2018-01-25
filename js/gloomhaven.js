@@ -97,14 +97,46 @@
     var parsedCard = parseCard(card);
     $(monster).find('.initiative').text(parsedCard.initiative);
     try {
-      $(monster).find('.stat-1').text(parsedCard.line1.content.join(' ')).addClass(parsedCard.line1.primaryOrSecondary);
-      $(monster).find('.stat-2').text(parsedCard.line2.content.join(' ')).addClass(parsedCard.line1.primaryOrSecondary);
-      $(monster).find('.stat-3').text(parsedCard.line3.content.join(' ')).addClass(parsedCard.line1.primaryOrSecondary);
-      $(monster).find('.stat-4').text(parsedCard.line4.content.join(' ')).addClass(parsedCard.line1.primaryOrSecondary);
+      $(monster)
+        .find('.stat-1')
+        .html(parseStatContents(parsedCard.line1.content))
+        .addClass(parsedCard.line1.primaryOrSecondary);
+      $(monster)
+        .find('.stat-2')
+        .html(parseStatContents(parsedCard.line2.content))
+        .addClass(parsedCard.line2.primaryOrSecondary);
+      $(monster)
+        .find('.stat-3')
+        .html(parseStatContents(parsedCard.line3.content))
+        .addClass(parsedCard.line3.primaryOrSecondary);
+      $(monster)
+        .find('.stat-4')
+        .html(parseStatContents(parsedCard.line4.content))
+        .addClass(parsedCard.line4.primaryOrSecondary);
     } catch (e) {
       // I should probably do something here but, to be honest, it's only failing
       // because the line it is trying to join doesn't exist. It's not a big deal.
     }
+  }
+
+  // This function will take in the content of a stat line and return it with the
+  // appropriate HTML string to be inserted.
+  function parseStatContents(statLine) {
+    var parsedContents = [];
+    statLine.forEach(function (each) {
+      if (each.includes('%')) {
+        if (each.includes('use_element')) {
+          var useElementSplit = each.split('%');
+          parsedContents.push(`<img class="stat-icon" src="/images/icons/use_${useElementSplit[1]}.svg"> :`)
+        } else {
+          var titleOnly = each.replace(/%/g, '')
+          parsedContents.push(`<img class="stat-icon" src="/images/icons/${titleOnly}.svg">`)
+        }
+      } else {
+        parsedContents.push(each)
+      }
+    })
+    return parsedContents.join(' ');
   }
 
   // This function should determine if something is a primary action or a secondary action
@@ -138,7 +170,6 @@
         content: card[5].split(' ').splice(1)
       }
     }
-
     return parsedCard;
   }
 

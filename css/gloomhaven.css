@@ -1,7 +1,105 @@
-.monster-select-modal {
-  display: none;
+.monster {
+  display: inline-block;
+  position: relative;
+}
+
+.monster img {
+  max-width: 100%;
+}
+
+.monster .content {
+  bottom: 0;
+  pointer-events: none;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0
+}
+
+.monster .content h2 {
+  color: white;
+  font-family: 'Pirata One', cursive;
+  font-size: 1.75rem;
+  font-weight: 400;
+  margin: 7px 0 25px;
+  text-align: center;
+}
+
+@media only screen and (min-width: 430px) {
+  .monster .content h2 {
+    margin: 12px 0 45px;
+  }
 }
 
 .clear-monster {
+  background: none;
+  border: 0;
+  color: white;
+  display: none;
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 1.5rem;
+  pointer-events: all;
+  position: absolute;
+  right: 5px;
+  top: 10px;
+}
+
+.card-stats {
+  color: white;
+  font-family: 'Lustria', serif;
+  text-align: center;
+}
+
+.card-stats p {
+  padding: 0 70px;
+}
+
+.card-stats .stat-3 {
+  padding: 0 35px;
+}
+
+.card-stats .stat-4 {
+  padding: 0 35px;
+}
+
+.primary {
+  font-size: 1.5rem;
+  margin: 15px 0 0;
+}
+
+.stat-icon {
+  height: 2rem;
+  margin: 0 5px;
+  vertical-align: sub;
+}
+
+.secondary {
+  font-size: 1rem;
+  margin: 5px 0 0;
+}
+
+.secondary .stat-icon {
+  height: 1.25rem;
+}
+
+.card-stats .initiative {
+  display: inline-block;
+  font-family: 'Pirata One', cursive;
+  font-size: 2.5rem;
+  left: 4.8%;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 19%;
+}
+
+@media only screen and (min-width: 430px) {
+  .initiative {
+    font-size: 3rem;
+    left: 5%;
+  }
+}
+
+.monster-select-modal {
   display: none;
 }
