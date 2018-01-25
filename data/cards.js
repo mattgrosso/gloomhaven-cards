@@ -1,4 +1,4 @@
-var decks = [
+const DECKS = [
   {
     class: "Ancient Artillery",
     cards: [
