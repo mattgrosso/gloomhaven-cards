@@ -1,3 +1,7 @@
+#monster-template {
+  display: none;
+}
+
 .monster {
   display: inline-block;
   position: relative;
@@ -5,6 +9,10 @@
 
 .monster img {
   max-width: 100%;
+}
+
+.card-front {
+  display: none;
 }
 
 .monster .content {
@@ -47,7 +55,14 @@
 .card-stats {
   color: white;
   font-family: 'Lustria', serif;
+  max-height: 65%;
+  overflow-y: scroll;
+  pointer-events: all;
   text-align: center;
+}
+
+.card-stats::-webkit-scrollbar {
+  display: none;
 }
 
 .card-stats p {
@@ -140,4 +155,21 @@
   bottom: 15px;
   right: 10px;
   height: 2rem;
+}
+
+.add-deck {
+  border: 0;
+  font-size: 3rem;
+  background-color: #650100;
+  width: 58px;
+  border-radius: 50%;
+  color: white;
+  line-height: 3rem;
+  padding: 0 0 10px;
+  float: right;
+  margin: 10px 10px 30px;
+}
+
+.add-deck:focus {
+  outline: 0;
 }

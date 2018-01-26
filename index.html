@@ -1,30 +1,95 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <title>Gloomhaven Monsters</title>
     <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy|Lustria|Pirata+One" rel="stylesheet">
     <link rel="stylesheet" href="/css/gloomhaven.css">
   </head>
   <body>
-    <div id="monster-1" class="monster">
-      <img src="images/front.jpg" alt="Monster card back">
-      <main class="content">
-        <h2>Click to Select Monster</h2>
-        <button class="clear-monster" type="button" name="Clear monster type">X</button>
-        <div class="card-stats">
-          <p class="initiative"></p>
-          <p class="stat-1"></p>
-          <p class="stat-2"></p>
-          <p class="stat-3"></p>
-          <p class="stat-4"></p>
-          <p class="reshuffle"></p>
+    <div class="decks-wrapper">
+      <div id="monster-template" class="monster">
+        <img class="card-front" src="images/front.jpg" alt="Monster card back">
+        <img class="card-back" src="images/back.jpg" alt="Monster card back">
+        <main class="content">
+          <h2>Click to Select Monster</h2>
+          <button class="clear-monster" type="button" name="Clear monster type">X</button>
+          <div class="card-stats">
+            <p class="initiative"></p>
+            <p class="stat-1"></p>
+            <p class="stat-2"></p>
+            <p class="stat-3"></p>
+            <p class="stat-4"></p>
+            <p class="reshuffle"></p>
+          </div>
+        </main>
+        <div class="monster-select-modal">
+          <ul></ul>
         </div>
-      </main>
-      <div class="monster-select-modal">
-        <ul></ul>
+      </div>
+
+      <div id="monster-1" class="monster">
+        <img class="card-front" src="images/front.jpg" alt="Monster card back">
+        <img class="card-back" src="images/back.jpg" alt="Monster card back">
+        <main class="content">
+          <h2>Click to Select Monster</h2>
+          <button class="clear-monster" type="button" name="Clear monster type">X</button>
+          <div class="card-stats">
+            <p class="initiative"></p>
+            <p class="stat-1"></p>
+            <p class="stat-2"></p>
+            <p class="stat-3"></p>
+            <p class="stat-4"></p>
+            <p class="reshuffle"></p>
+          </div>
+        </main>
+        <div class="monster-select-modal">
+          <ul></ul>
+        </div>
+      </div>
+
+      <div id="monster-2" class="monster">
+        <img class="card-front" src="images/front.jpg" alt="Monster card back">
+        <img class="card-back" src="images/back.jpg" alt="Monster card back">
+        <main class="content">
+          <h2>Click to Select Monster</h2>
+          <button class="clear-monster" type="button" name="Clear monster type">X</button>
+          <div class="card-stats">
+            <p class="initiative"></p>
+            <p class="stat-1"></p>
+            <p class="stat-2"></p>
+            <p class="stat-3"></p>
+            <p class="stat-4"></p>
+            <p class="reshuffle"></p>
+          </div>
+        </main>
+        <div class="monster-select-modal">
+          <ul></ul>
+        </div>
+      </div>
+
+      <div id="monster-3" class="monster">
+        <img class="card-front" src="images/front.jpg" alt="Monster card back">
+        <img class="card-back" src="images/back.jpg" alt="Monster card back">
+        <main class="content">
+          <h2>Click to Select Monster</h2>
+          <button class="clear-monster" type="button" name="Clear monster type">X</button>
+          <div class="card-stats">
+            <p class="initiative"></p>
+            <p class="stat-1"></p>
+            <p class="stat-2"></p>
+            <p class="stat-3"></p>
+            <p class="stat-4"></p>
+            <p class="reshuffle"></p>
+          </div>
+        </main>
+        <div class="monster-select-modal">
+          <ul></ul>
+        </div>
       </div>
     </div>
+    <button class="add-deck" type="Add Deck" name="button">+</button>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="data/cards.js" charset="utf-8"></script>

@@ -4,14 +4,8 @@
 
   // If there is already a monster selected, this function calls on draw card.
   // Otherwise, it toggles the monster select modal.
-  $('.monster img').click(function (event) {
-    var currentMonster = $(event.target).closest('.monster');
-    if (!currentMonster.attr('data-monster')) {
-      $('.monster-select-modal').hide();
-      currentMonster.find('.monster-select-modal').toggle();
-    } else {
-      showStats(drawCard(currentMonster), currentMonster);
-    }
+  $('.monster').click(function (event) {
+    clickDeck(event);
   })
 
   // This function listens for a selection on the modal.
@@ -21,14 +15,50 @@
 
   // This function listens for clicks on the clear button.
   $('.clear-monster').click(function (event) {
+    event.stopPropagation();
     clearMonster(event.target.closest('.monster'));
   })
+
+
+
+
+  // This function should add a new card to the DOM whenever clicked.
+  $('.add-deck').click(function (event) {
+    var deckCount = $('.monster').length + 1;
+    var newDeck = $('#monster-template').clone().attr('id', `monster-${deckCount}`);
+    newDeck.click(function (event) {
+      clickDeck(event);
+    });
+    newDeck.find('.monster-select-modal li').click(function (event) {
+      setDeck(event)
+    });
+    newDeck.find('.clear-monster').click(function (event) {
+      event.stopPropagation();
+      clearMonster(event.target.closest('.monster'));
+    })
+    $('.decks-wrapper').append($(newDeck));
+  })
+
+  // This function triggers on click of a deck
+  function clickDeck(event) {
+    var currentMonster = $(event.target).closest('.monster');
+    if (!currentMonster.attr('data-monster')) {
+      $('.monster-select-modal').hide();
+      currentMonster.find('.card-back').hide();
+      currentMonster.find('.card-front').show();
+      currentMonster.find('.monster-select-modal').toggle();
+    } else {
+      showStats(drawCard(currentMonster), currentMonster);
+    }
+  }
 
   // This function clears the current monster type from a deck.
   function clearMonster(targetMonster) {
     delete decksInUse[targetMonster.id];
     $(targetMonster).attr('data-monster', '');
     $(targetMonster).find('h2').text('Click to Select Monster');
+    $(targetMonster).find('.card-back').show();
+    $(targetMonster).find('.card-front').hide();
     $(targetMonster).find('.clear-monster').hide();
     $(targetMonster).find('.card-stats').children().removeClass('primary secondary');
     $(targetMonster).find('.card-stats').hide();
@@ -97,9 +127,7 @@
     var parsedCard = parseCard(card);
     $(monster).find('.initiative').text(parsedCard.initiative);
     try {
-      console.log(parsedCard);
       if (parsedCard.refresh) {
-        console.log('flag');
         $(monster)
           .find('.reshuffle')
           .html('<img class="reshuffle" src="/images/icons/shuffle.svg">')
