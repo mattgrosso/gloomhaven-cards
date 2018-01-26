@@ -97,6 +97,13 @@
     var parsedCard = parseCard(card);
     $(monster).find('.initiative').text(parsedCard.initiative);
     try {
+      console.log(parsedCard);
+      if (parsedCard.refresh) {
+        console.log('flag');
+        $(monster)
+          .find('.reshuffle')
+          .html('<img class="reshuffle" src="/images/icons/shuffle.svg">')
+      }
       $(monster)
         .find('.stat-1')
         .html(parseStatContents(parsedCard.line1.content))

@@ -134,3 +134,10 @@
 .monster-select-modal ul li:last-of-type {
   padding-bottom: 50px;
 }
+
+.reshuffle {
+  position: absolute;
+  bottom: 15px;
+  right: 10px;
+  height: 2rem;
+}
