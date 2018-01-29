@@ -19,9 +19,6 @@
     clearMonster(event.target.closest('.monster'));
   })
 
-
-
-
   // This function should add a new card to the DOM whenever clicked.
   $('.add-deck').click(function (event) {
     var deckCount = $('.monster').length + 1;
@@ -39,11 +36,16 @@
     $('.decks-wrapper').append($(newDeck));
   })
 
+
+
+
   // This function triggers on click of a deck
   function clickDeck(event) {
     var currentMonster = $(event.target).closest('.monster');
     if (!currentMonster.attr('data-monster')) {
       $('.monster-select-modal').hide();
+      currentMonster.addClass('front-facing');
+      currentMonster.removeClass('back-facing');
       currentMonster.find('.card-back').hide();
       currentMonster.find('.card-front').show();
       currentMonster.find('.monster-select-modal').toggle();
@@ -55,6 +57,8 @@
   // This function clears the current monster type from a deck.
   function clearMonster(targetMonster) {
     delete decksInUse[targetMonster.id];
+    $(targetMonster).removeClass('front-facing');
+    $(targetMonster).addClass('back-facing');
     $(targetMonster).attr('data-monster', '');
     $(targetMonster).find('h2').text('Click to Select Monster');
     $(targetMonster).find('.card-back').show();

@@ -1,9 +1,19 @@
+html {
+  background-image: linear-gradient(to bottom, #000, #212121);
+  min-height: 100%;
+}
+
+.decks-wrapper {
+  text-align: center;
+}
+
 #monster-template {
   display: none;
 }
 
 .monster {
   display: inline-block;
+  margin: 10px;
   position: relative;
 }
 
@@ -33,9 +43,21 @@
   text-align: center;
 }
 
-@media only screen and (min-width: 430px) {
+@media only screen and (min-width: 500px) {
   .monster .content h2 {
     margin: 12px 0 45px;
+  }
+}
+
+.back-facing.monster .content h2 {
+  margin: 50% 0;
+  font-size: 1.2rem;
+}
+
+@media only screen and (min-width: 500px) {
+  .back-facing.monster .content h2 {
+    margin: 219px 0;
+    font-size: 1.5rem;
   }
 }
 
