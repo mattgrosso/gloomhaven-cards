@@ -1,0 +1,23 @@
+{
+  "name": "gloomhaven-cards",
+  "version": "1.0.0",
+  "description": "A Simple App for handling monster cards in Gloomhaven",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server build/ -p $PORT"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mattgrosso/gloomhaven-cards.git"
+  },
+  "author": "Matt Grosso",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mattgrosso/gloomhaven-cards/issues"
+  },
+  "homepage": "https://github.com/mattgrosso/gloomhaven-cards#readme",
+  "dependencies": {
+    "http-server": "^0.11.1"
+  }
+}
