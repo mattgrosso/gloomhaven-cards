@@ -1,0 +1,6 @@
+{
+  "name": "Gloomhaven-Cards",
+  "description": "An app that handles the monster cards for Gloomhaven",
+  "repository": "https://github.com/mattgrosso/gloomhaven-cards",
+  "keywords": ["node", "express", "static"]
+}
